@@ -1,0 +1,69 @@
+html {
+    margin: 0px;
+}
+
+body {
+    margin: 0px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-container {
+    height: 5%;
+    width: 100%;
+    background-color: aqua;
+    display: flex;
+    align-items: center;
+    gap: 10%;
+}
+
+#logo {
+    padding-left: 1.1rem;
+}
+
+
+.header-link {
+    float: left;
+    padding-right: 1.1rem;
+}
+
+
+.main {
+    height: 90%;
+    display: flex;
+}
+
+.map-main {
+    height: 100%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#viewDiv {
+    height: 100%;
+    width: 100%;
+}
+
+.feature-table-container {
+    height: 30%;
+}
+
+.form-main {
+    height: 100%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.footer-container {
+    height: 10%;
+    background-color: aqua;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
