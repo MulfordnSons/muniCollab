@@ -32,13 +32,65 @@
 
 
         <div class="form-main">
+            <div>Toggle Active Layers Below:</div>
             <div class="layer-list">
-                <div>Tax Parcels</div>
-                <div>Address Points</div>
-                <div>Roads</div>
-                <div>Hydrants</div>
+                <button class="tablinks" onclick="openCity(event, 'London')">Tax Parcels</button>
+                <button class="tablinks" onclick="openCity(event, 'Paris')">Address Points</button>
+                <button class="tablinks" onclick="openCity(event, 'Tokyo')">Roads</button>
+                <button class="tablinks" onclick="tobe">Hydrants</button>
             </div>
-            <div>everything else goes here</div>
+
+            <div class="form">
+                <div id="form-space">Let's do this!</div>
+
+                <div class="form-pane">
+                    <div class="left-form">
+
+                        <form action="" method="get" class="user-form">
+
+                            <div class='form-row'>
+                                <label for='first-name'>FIRST NAME</label>
+                                <input id='first-name' name='first-name' type='text'/>
+                            </div>
+
+                            <div class='form-row'>
+                                <label for='email'>EMAIL</label>
+                                <input id='email'
+                                       name='email'
+                                       type='email'
+                                       placeholder='joe@example.com'/>
+                            </div>
+
+                            <div class="form-row">
+                                <label for="pwd">PASSWORD</label>
+                                <input type="password" id="pwd" name="pwd">
+                            </div>
+                            
+                        </form>
+                    
+                    </div>
+                    <div class="right-form">
+
+                        <div class='form-row'>
+                            <label for='last-name'>LAST NAME</label>
+                            <input id='last-name' name='last-name' type='text'/>
+                        </div>
+
+                        <div class='form-row'>
+                            <label for='phone-number'>PHONE NUMBER</label>
+                            <input id='phone-number' name='phone-number' type='number'/>
+                        </div>
+
+                        <div class="form-row">
+                            <label for="pwd">CONFIRM PASSWORD</label>
+                            <input type="password" id="pwd" name="pwd">
+                        </div>
+
+                    </div>
+                </div>
+                
+            </div>
+
         </div>
         
 
