@@ -1,14 +1,25 @@
-require(["esri/config","esri/Map", "esri/views/MapView"], function (esriConfig,Map, MapView) {
+require([
+    "esri/config",
+    "esri/WebMap",
+    "esri/views/MapView",
+    "esri/widgets/ScaleBar",
+    "esri/widgets/Legend"
+  ], function(esriConfig, WebMap, MapView, ScaleBar, Legend) {
 
-    const map = new Map({
-        basemap: "arcgis-imagery" // Basemap layer service
-      });
+  esriConfig.apiKey = "";
+
+   const webmap = new WebMap ({
+    portalItem: {
+        id: "41281c51f9de45edaf1c8ed44bb10e30"
+   }
+    });
 
     const view = new MapView({
-        map: map,
-        center: [-118.805, 34.027], // Longitude, latitude
-        zoom: 13, // Zoom level
-        container: "viewDiv" // Div element
+        container: "viewDiv",
+        map: webmap,
+
     });
 
 });
+
+
