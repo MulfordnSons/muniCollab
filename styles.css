@@ -8,8 +8,13 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: #FFFDD0;
+    background-color: whitesmoke;
 }
+
+label,input{
+    display:flex;
+    flex-direction:column;
+  }
 
 .header-container {
     height: 5%;
@@ -38,7 +43,7 @@ body {
 
 .map-main {
     height: 100%;
-    width: 60%;
+    width: 70%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -46,18 +51,22 @@ body {
 }
 
 #viewDiv {
+    border: solid 1px black;
     height: 100%;
     width: 100%;
+    margin-left: 10px;
 }
 
 .feature-table-container {
     height: 30%;
     width: 100%;
+    display: none;
 }
 
 .form-main {
     height: 100%;
-    width: 40%;
+    width: 30%;
+    padding-left: 1%;
     display: flex;
     flex-direction: column;
 }
@@ -99,6 +108,24 @@ body {
     border: 1px solid #ccc;
     border-top: none;
   }
+
+#container {
+    background-color: grey;
+    width: 80%;
+    border-radius: 2%;;
+}
+
+.form-container {
+    padding-top: 5%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+.form-container > form > div {
+    flex: auto;
+}
 
 .footer-container {
     height: 3%;
