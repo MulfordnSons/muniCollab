@@ -8,6 +8,8 @@ require([
 
   esriConfig.apiKey = "";
 
+  document.getElementById("submit").disabled = true;
+
    const webmap = new WebMap ({
     portalItem: {
         id: "41281c51f9de45edaf1c8ed44bb10e30"

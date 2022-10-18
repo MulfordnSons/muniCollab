@@ -26,8 +26,27 @@
     <div class="main">
 
         <div class="map-main">
-            <div id="viewDiv"></div>
-            <div class="feature-table-container">featureTable (this will be 'collapsable')</div>
+            <div id="viewDiv">
+
+            <div class="modal-overlay" id="modal-overlay"></div>
+
+            <div class="modal" id="modal">
+                <button class="close-button" id="close-button">Obvious Close Button</button>
+                <div class="modal-guts">
+                    <h1>Modal Example</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae expedita corrupti laudantium aperiam, doloremque explicabo ipsum earum dicta saepe delectus totam vitae ipsam doloribus et obcaecati facilis eius assumenda, cumque.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae expedita corrupti laudantium aperiam, doloremque explicabo ipsum earum dicta saepe delectus totam vitae ipsam doloribus et obcaecati facilis eius assumenda, cumque.</p>
+                </div>
+            </div>
+
+            </div>
+            <div id="info" class="esri-widget esri-component">
+                <h3>Place a Point on the Map to begin the Submission Process</h3>
+            </div>
+            <!-- <div class="feature-table-container">featureTable (this will be 'collapsable')</div> -->
+
+            
+
         </div>
 
 
@@ -42,7 +61,7 @@
 
             <div id="container">
 
-                <form action="" method="POST" onSubmit="search();return false;">
+                <form action="" method="POST">
 
                     <div class="form-container">
                         <div class='form-row'>
@@ -85,10 +104,16 @@
                             Add helpful information regarding the nature of this request
                             </textarea>
                         </div>
+
+                        <div class="form-row-footer">
+                            <input type="submit" name="submit" value="Submit" id="submit">
+                        </div>
+
                     </div>
 
     
                 </form>
+
 
             </div>
           
@@ -108,7 +133,6 @@
     </div>
     
 
-    
     <script src="app.js"></script>
 </body>
 </html>
