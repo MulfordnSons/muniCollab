@@ -10,24 +10,19 @@ require([
       id: "draw Graphics Layer"
     });
 
-    // Trailheads feature layer (points)
     var taxParcels = new FeatureLayer({
         url: "https://services1.arcgis.com/1Cfo0re3un0w6a30/arcgis/rest/services/Tax_Parcels/FeatureServer"
       });
 
-    //   map.add(taxParcels);
       
-      // Trails feature layer (lines)
     var addressPoints = new FeatureLayer({
         url: "https://services1.arcgis.com/1Cfo0re3un0w6a30/arcgis/rest/services/Address_Points/FeatureServer"
       });
 
-    //   map.add(addressPoints);
-
-    
+  
     const map = new Map({
       basemap: "gray-vector",
-      layers:[drawGL, taxParcels, addressPoints]
+      layers:[drawGL]
     });
     
     const view = new MapView({
@@ -37,6 +32,8 @@ require([
       zoom: 10
     });
 
+    map.add(addressPoints);
+    map.add(taxParcels);
      
 
     //map.addLayer(drawGL)
@@ -80,9 +77,9 @@ require([
         geometry: point,
         symbol: {
           type: "simple-marker", // autocasts as SimpleMarkerSymbol
-          style: "square",
-          color: "red",
-          size: "16px",
+          style: "circle",
+          color: "blue",
+          size: "12px",
           outline: { // autocasts as SimpleLineSymbol
             color: [255, 255, 0],
             width: 3

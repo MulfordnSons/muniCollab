@@ -1,3 +1,8 @@
+:root {
+    --countyTheme: #005fa2;
+    --titleTextColor: whitesmoke;
+}
+
 html {
     margin: 0px;
 }
@@ -19,22 +24,42 @@ label,input{
 .header-container {
     height: 5%;
     width: 100%;
-    background-color: #005fa2;
+    background-color: var(--countyTheme);
     display: flex;
     align-items: center;
-    gap: 10%;
+    color: var(--titleTextColor);
+    /* gap: 10%; */
 }
 
 #logo {
-    padding-left: 1.1rem;
+    padding-left: 0.5%;
+    height: 95%;
+}
+
+#app-title {
+    padding-left: 0.5%;
 }
 
 
 .header-link {
     float: left;
     padding-right: 1.1rem;
+    padding-left: 1.1rem;
+    color: var(--titleTextColor);
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 3%;
+    -webkit-transition: color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+    -moz-transition: color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+    -ms-transition: color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+    border-bottom: 0.5px solid #005fa2;
 }
 
+.header-link:hover {
+    color: #000;
+    text-decoration: none;
+}
 
 .main {
     height: 90%;
@@ -101,11 +126,14 @@ label,input{
     cursor: pointer;
     padding: 14px 16px;
     transition: 0.3s;
+    border-radius: 5%;
   }
   
   /* Change background color of buttons on hover */
 .layer-list button:hover {
-    background-color: #ddd;
+    border-radius: 5%;
+    background-color: var(--countyTheme);
+    color: var(--titleTextColor);
   }
   
   /* Create an active/current tablink class */
@@ -168,10 +196,11 @@ input {
 
 .footer-container {
     height: 3%;
-    background-color: #005fa2;
+    background-color: var(--countyTheme);
     display: flex;
     align-items: center;
     justify-content: center;
+    color: var(--titleTextColor);
 }
 
 /* .modal {
