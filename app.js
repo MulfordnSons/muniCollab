@@ -18,7 +18,7 @@ require([
     //   map.add(taxParcels);
       
       // Trails feature layer (lines)
-      var addressPoints = new FeatureLayer({
+    var addressPoints = new FeatureLayer({
         url: "https://services1.arcgis.com/1Cfo0re3un0w6a30/arcgis/rest/services/Address_Points/FeatureServer"
       });
 
@@ -33,8 +33,8 @@ require([
     const view = new MapView({
       container: "viewDiv",
       map: map,
-      center: [-8592564.346758613, 4895759.186868593],
-      zoom: 13
+      center: [-86, 49],
+      zoom: 10
     });
 
      
