@@ -48,7 +48,7 @@ require([
         // Create a point when user clicks on the view or presses "C" key.
         action.on("draw-complete", function (evt) {
           console.log(evt)
-          createPointGraphic(evt.coordinates, true);
+          createPointGraphic(evt.coordinates, false);
           setDrawAction();
         });
       }
@@ -66,8 +66,8 @@ require([
           geometry: point,
           symbol: {
             type: "simple-marker", // autocasts as SimpleMarkerSymbol
-            style: "square",
-            color: "red",
+            style: "circle",
+            color: "blue",
             size: "16px",
             outline: { // autocasts as SimpleLineSymbol
               color: [255, 255, 0],
