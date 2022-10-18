@@ -183,8 +183,8 @@ input {
 
 
 .modal {
+    display: none;
     /* This way it could be display flex or grid or whatever also. */
-    display: block;
     
     /* Probably need media queries here */
     width: 25%;

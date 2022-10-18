@@ -1,91 +1,103 @@
 require([
-    "esri/config",
-    "esri/WebMap",
+    "esri/Map",
     "esri/views/MapView",
     "esri/views/draw/Draw",
     "esri/Graphic",
-    "esri/layers/GraphicsLayer"
-  ], function(esriConfig, WebMap, MapView, Draw, Graphic, GraphicsLayer) {
-
+    "esri/layers/GraphicsLayer",
+    "esri/layers/FeatureLayer"
+  ], (Map, MapView, Draw, Graphic, GraphicsLayer, FeatureLayer) => {
     const drawGL = new GraphicsLayer({
-        id: "draw Graphics Layer"
+      id: "draw Graphics Layer"
+    });
+
+    // Trailheads feature layer (points)
+    var taxParcels = new FeatureLayer({
+        url: "https://services1.arcgis.com/1Cfo0re3un0w6a30/arcgis/rest/services/Tax_Parcels/FeatureServer"
       });
 
-  esriConfig.apiKey = "";
+    //   map.add(taxParcels);
+      
+      // Trails feature layer (lines)
+      var addressPoints = new FeatureLayer({
+        url: "https://services1.arcgis.com/1Cfo0re3un0w6a30/arcgis/rest/services/Address_Points/FeatureServer"
+      });
 
-  document.getElementById("submit").disabled = true;
+    //   map.add(addressPoints);
 
-   const webmap = new WebMap ({
-    portalItem: {
-        id: "41281c51f9de45edaf1c8ed44bb10e30"
-   }
+    
+    const map = new Map({
+      basemap: "gray-vector",
+      layers:[drawGL, taxParcels, addressPoints]
     });
-
+    
     const view = new MapView({
-        container: "viewDiv",
-        map: webmap,
-
+      container: "viewDiv",
+      map: map,
+      center: [-8592564.346758613, 4895759.186868593],
+      zoom: 13
     });
+
+     
+
+    //map.addLayer(drawGL)
 
     const draw = new Draw({
-        view: view
+      view: view
+    });
+    
+    view.when(()=>{
+      setDrawAction();
+    });
+    
+    function setDrawAction() {
+      let action = draw.create("point");
+
+      // PointDrawAction.cursor-update
+      // Give a visual feedback to users as they move the pointer over the view
+      action.on("cursor-update", function (evt) {
+        createPointGraphic(evt.coordinates);
       });
-      
-      view.when(()=>{
+    
+      // PointDrawAction.draw-complete
+      // Create a point when user clicks on the view or presses "C" key.
+      action.on("draw-complete", function (evt) {
+        document.getElementById('modal-overlay').style.display = "block"
+        createPointGraphic(evt.coordinates, true);
         setDrawAction();
       });
-      
-      function setDrawAction() {
-        let action = draw.create("point");
-
-        // PointDrawAction.cursor-update
-        // Give a visual feedback to users as they move the pointer over the view
-        action.on("cursor-update", function (evt) {
-          createPointGraphic(evt.coordinates);
-        });
-      
-        // PointDrawAction.draw-complete
-        // Create a point when user clicks on the view or presses "C" key.
-        action.on("draw-complete", function (evt) {
-          console.log(evt)
-          createPointGraphic(evt.coordinates, false);
-          setDrawAction();
-        });
-      }
-      
-      function createPointGraphic(coordinates, addToGL){
-        view.graphics.removeAll();
-        let point = {
-          type: "point", // autocasts as /Point
-          x: coordinates[0],
-          y: coordinates[1],
-          spatialReference: view.spatialReference
-        };
-      
-        let graphic = new Graphic({
-          geometry: point,
-          symbol: {
-            type: "simple-marker", // autocasts as SimpleMarkerSymbol
-            style: "circle",
-            color: "blue",
-            size: "16px",
-            outline: { // autocasts as SimpleLineSymbol
-              color: [255, 255, 0],
-              width: 3
-            }
-          }
-        });
-        if(addToGL){
-          console.log('add to view 2')
-          drawGL.removeAll();
-          drawGL.add(graphic);
-        }else{
-          console.log('add to view')
-          view.graphics.add(graphic);
-        }
-      }
+    }
     
-
-});
+    function createPointGraphic(coordinates, addToGL){
+      view.graphics.removeAll();
+      let point = {
+        type: "point", // autocasts as /Point
+        x: coordinates[0],
+        y: coordinates[1],
+        spatialReference: view.spatialReference
+      };
+    
+      let graphic = new Graphic({
+        geometry: point,
+        symbol: {
+          type: "simple-marker", // autocasts as SimpleMarkerSymbol
+          style: "square",
+          color: "red",
+          size: "16px",
+          outline: { // autocasts as SimpleLineSymbol
+            color: [255, 255, 0],
+            width: 3
+          }
+        }
+      });
+      if(addToGL){
+        console.log(coordinates)
+        console.log(view.spatialReference)
+        drawGL.removeAll();
+        drawGL.add(graphic);
+      }else{
+        view.graphics.add(graphic);
+      }
+    }
+  });
 
 
