@@ -16,10 +16,10 @@ body {
     background-color: whitesmoke;
 }
 
-label,input{
+/* label,input{
     display:flex;
     flex-direction:column;
-  }
+  } */
 
 .header-container {
     height: 5%;
@@ -68,7 +68,7 @@ label,input{
 
 .map-main {
     height: 100%;
-    width: 70%;
+    width: 99.6%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -80,6 +80,12 @@ label,input{
     height: 100%;
     width: 100%;
     margin-left: 10px;
+}
+
+.enable-draw > button {
+    position: absolute;
+    left: 1%;
+    top: 75%;
 }
 
 #info {
@@ -100,21 +106,38 @@ label,input{
     display: none;
 }
 
-.form-main {
-    height: 100%;
-    width: 30%;
-    padding-left: 1%;
-    display: flex;
-    flex-direction: column;
+.list-container {
+    position: absolute;
+    top: 80%;
+    left: 1%;
+    height: auto;
+    text-align: center;
+    border-radius: 5%;
+}
+
+#toggle-title {
+    padding-left: 5px;
+}
+
+#active-layer-title {
+    padding-left: 5px;
 }
 
 .layer-list {
     display: flex;
     width: 100%;
+    justify-content: center;
+    align-items: center;
 }
 
 .layer-list > button {
     flex: auto;
+
+}
+
+.tablinks:focus {
+    color: var(--countyTheme);
+    font-weight: 900;
 }
 
 /* Style the buttons that are used to open the tab content */
@@ -149,49 +172,111 @@ label,input{
     border-top: none;
   }
 
+.form-main {
+    height: 100%;
+    width: 30%;
+    padding-left: 1%;
+    display: flex;
+    flex-direction: column;
+    display: none; /*HERE FOR TESTING PURPOSES REMOVE AND PUT IN DRAG MODAL */
+}
+
+.form-title {
+    display: flex;
+    height: 5rem;
+}
+
 #container {
     width: 80%;
     border-radius: 2%;;
 }
 
-.form-container {
-    padding-top: 5%;
-    height: 60%;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-.form-container > form > div {
+.form-container > ul > form > div > li {
     flex: auto;
 }
 
-label {
-    font-size: 0.70rem;
-    letter-spacing: 2px;
-    font-weight: 600;
+.form-style-1 {
+	margin:10px auto;
+	max-width: 400px;
+	padding: 20px 12px 10px 20px;
+	font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+.form-style-1 li {
+	padding: 0 0 25%;
+	display: block;
+	list-style: none;
+	margin: 10px 0 0 0;
+}
+.form-style-1 label{
+	margin:0 0 3px 0;
+	padding:0px;
+	display:block;
+	font-weight: bold;
+}
+.form-style-1 input[type=text], 
+.form-style-1 input[type=date],
+.form-style-1 input[type=datetime],
+.form-style-1 input[type=number],
+.form-style-1 input[type=search],
+.form-style-1 input[type=time],
+.form-style-1 input[type=url],
+.form-style-1 input[type=email],
+textarea, 
+select{
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	border:1px solid #BEBEBE;
+	padding: 7px;
+	margin:0px;
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-ms-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	outline: none;	
+}
+.form-style-1 input[type=text]:focus, 
+.form-style-1 input[type=date]:focus,
+.form-style-1 input[type=datetime]:focus,
+.form-style-1 input[type=number]:focus,
+.form-style-1 input[type=search]:focus,
+.form-style-1 input[type=time]:focus,
+.form-style-1 input[type=url]:focus,
+.form-style-1 input[type=email]:focus,
+.form-style-1 textarea:focus, 
+.form-style-1 select:focus{
+	-moz-box-shadow: 0 0 8px #88D5E9;
+	-webkit-box-shadow: 0 0 8px #88D5E9;
+	box-shadow: 0 0 8px #88D5E9;
+	border: 1px solid #88D5E9;
+}
+.form-style-1 .field-divided{
+	width: 49%;
 }
 
-textarea {
-    box-sizing: content-box;
-    width: 100%;
+.form-style-1 .field-long{
+	width: 100%;
 }
-
-input[type=submit] {
-    /* background-color: grey; */
-    background-color: #596D48;
-    border: solid 1px grey;
-    border-radius: 10%;
-    color: white;
-    padding: 16px 60px;
-    text-decoration: none;
-    margin: 4px 2px;
-    cursor: pointer;
+.form-style-1 .field-select{
+	width: 100%;
 }
-
-input {
-    border: 1px solid lightgrey;
-    border-radius: 8%;
+.form-style-1 .field-textarea{
+	height: 100px;
+}
+.form-style-1 input[type=submit], .form-style-1 input[type=button]{
+	background: var(--countyTheme);
+	padding: 8px 15px 8px 15px;
+	border: none;
+	color: #fff;
+}
+.form-style-1 input[type=submit]:hover, .form-style-1 input[type=button]:hover{
+	background: #4691A4;
+	box-shadow:none;
+	-moz-box-shadow:none;
+	-webkit-box-shadow:none;
+}
+.form-style-1 .required{
+	color:red;
 }
 
 .footer-container {
@@ -226,7 +311,7 @@ input {
     
     z-index: 100;
     
-    left: 35%;
+    left: 50%;
     top: 50%;
     
     /* Use this for centering if unknown width/height */
@@ -248,7 +333,7 @@ input {
     position: absolute;
     left: 0.3%;
     height: 89.9%;
-    width: 69.4%;
+    width: 99.6%;
     /* display: none; */
     background: rgba(0, 0, 0, 0.378);
   }

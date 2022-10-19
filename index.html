@@ -31,14 +31,27 @@
         <div class="map-main">
             <div id="viewDiv">
 
+                <div class="enable-draw esri-widget esri-component">
+                    <button id="enable-draw">enable drawing</button>
+                </div>
+
+                <div class="list-container esri-widget esri-component">
+                    <h3 id="toggle-title">Toggle Acitve Layer</h3>
+                    <div class="layer-list">
+                        <button class="tablinks" onclick="switchLayers(event, 'London')">Tax Parcels</button>
+                        <button class="tablinks" onclick="switchLayers(event, 'Paris')">Address Points</button>
+                        <button class="tablinks" onclick="switchLayers(event, 'Tokyo')">Roads</button>
+                        <button class="tablinks" onclick="switchLayers">Hydrants</button>
+                    </div>
+                </div>
+            
             <div class="modal-overlay" id="modal-overlay"></div>
 
             <div class="modal" id="modal">
                 <button class="close-button" id="close-button">Obvious Close Button</button>
                 <div class="modal-guts">
-                    <h1>Modal Example</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae expedita corrupti laudantium aperiam, doloremque explicabo ipsum earum dicta saepe delectus totam vitae ipsam doloribus et obcaecati facilis eius assumenda, cumque.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae expedita corrupti laudantium aperiam, doloremque explicabo ipsum earum dicta saepe delectus totam vitae ipsam doloribus et obcaecati facilis eius assumenda, cumque.</p>
+                    <h1>Request Form</h1>
+                    <p>Input Fields Go Here</p>
                 </div>
             </div>
 
@@ -54,68 +67,40 @@
 
 
         <div class="form-main">
-            <div>Toggle Active Layers Below:</div>
-            <div class="layer-list">
-                <button class="tablinks" onclick="switchLayers(event, 'London')">Tax Parcels</button>
-                <button class="tablinks" onclick="switchLayers(event, 'Paris')">Address Points</button>
-                <button class="tablinks" onclick="switchLayers(event, 'Tokyo')">Roads</button>
-                <button class="tablinks" onclick="switchLayers">Hydrants</button>
+
+            <div class="form-title">
+                <div>
+                    <img src="images/CCPALogo_61x61px.gif" alt="logo">
+                </div>                
+                <h3>Request Form</h3>
             </div>
 
             <div id="container">
 
-                <form action="" method="POST">
-
-                    <div class="form-container">
-                        <div class='form-row'>
-                            <label for='feature-request'>FEATURE REQUEST:</label>
-                            <input id='feature-request' name='feature-request' type='text'/>
-                        </div>
-        
-                        <div class='form-row'>
-                            <label for='first-name'>FIRST NAME:</label>
-                            <input id='first-name' name='first-name' type='text'/>
-                        </div>
-        
-                        <div class='form-row'>
-                            <label for='last-name'>LAST NAME</label>
-                            <input id='last-name' name='last-name' type='text'/>
-                        </div>
-        
-                        <div class='form-row'>
-                            <label for='email'>EMAIL</label>
-                            <input id='email'
-                                name='email'
-                                type='email'
-                                placeholder='joe@example.com'/>
-                        </div>
-        
-                        <div class='form-row'>
-                            <label for='phone-number'>PHONE NUMBER</label>
-                            <input id='phone-number' name='phone-number' type='number'/>
-                        </div>
-        
-                        <div class="form-row">
-                            <label for="request-date">DATE OF REQUEST:</label>
-                            <input type="date" id="request-date" name="request-date">
-                        </div>
-        
-                        <div class="form-row">
-                            <label for="notes">Request Notes:</label>
-        
-                            <textarea id="notes" name="notes" rows="10" cols="50">
-                            Add helpful information regarding the nature of this request
-                            </textarea>
-                        </div>
-
-                        <div class="form-row-footer">
-                            <input type="submit" name="submit" value="Submit" id="submit">
-                        </div>
-
-                    </div>
-
-    
-                </form>
+                <form method="post" action="" >
+                    <ul class="form-style-1">
+                        <li><label>Full Name <span class="required">*</span></label><input type="text" name="field1" class="field-divided" placeholder="First" /> <input type="text" name="field2" class="field-divided" placeholder="Last" /></li>
+                        <li>
+                            <label>Email <span class="required">*</span></label>
+                            <input type="email" name="field3" class="field-long" />
+                        </li>
+                        <li>
+                            <label>Feature Type</label>
+                            <select name="field4" class="field-select">
+                            <option value="Advertise">Advertise</option>
+                            <option value="Partnership">Partnership</option>
+                            <option value="General Question">General</option>
+                            </select>
+                        </li>
+                        <li>
+                            <label>Your Message <span class="required">*</span></label>
+                            <textarea name="field5" id="field5" class="field-long field-textarea"></textarea>
+                        </li>
+                        <li>
+                            <input type="submit" value="Submit" />
+                        </li>
+                    </ul>
+                    </form>
 
             </div>
           
