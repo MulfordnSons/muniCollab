@@ -30,6 +30,20 @@
 
         <div class="map-main">
             <div id="viewDiv">
+			
+			<div class="enable-draw esri-widget esri-component">
+                    <button id="enable-draw">enable drawing</button>
+                </div>
+
+                <div class="list-container esri-widget esri-component">
+                    <h3 id="toggle-title">Toggle Acitve Layer</h3>
+                    <div class="layer-list">
+                        <button class="tablinks" onclick="switchLayers(event, 'London')">Tax Parcels</button>
+                        <button class="tablinks" onclick="switchLayers(event, 'Paris')">Address Points</button>
+                        <button class="tablinks" onclick="switchLayers(event, 'Tokyo')">Roads</button>
+                        <button class="tablinks" onclick="switchLayers">Hydrants</button>
+                    </div>
+                </div>
 
             <div class="modal-overlay" id="modal-overlay"></div>
 
@@ -54,13 +68,6 @@
 
 
         <div class="form-main">
-            <div>Toggle Active Layers Below:</div>
-            <div class="layer-list">
-                <button class="tablinks" onclick="switchLayers(event, 'London')">Tax Parcels</button>
-                <button class="tablinks" onclick="switchLayers(event, 'Paris')">Address Points</button>
-                <button class="tablinks" onclick="switchLayers(event, 'Tokyo')">Roads</button>
-                <button class="tablinks" onclick="switchLayers">Hydrants</button>
-            </div>
 
             <div id="container">
 
