@@ -1,0 +1,288 @@
+:root {
+    --countyTheme: #005fa2;
+    --titleTextColor: whitesmoke;
+}
+
+html {
+    margin: 0px;
+}
+
+body {
+    margin: 0px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: whitesmoke;
+}
+
+label,input{
+    display:flex;
+    flex-direction:column;
+  }
+
+.header-container {
+    height: 5%;
+    width: 100%;
+    background-color: var(--countyTheme);
+    display: flex;
+    align-items: center;
+    color: var(--titleTextColor);
+    /* gap: 10%; */
+}
+
+#logo {
+    padding-left: 0.5%;
+    height: 95%;
+}
+
+#app-title {
+    padding-left: 0.5%;
+}
+
+
+.header-link {
+    float: left;
+    padding-right: 1.1rem;
+    padding-left: 1.1rem;
+    color: var(--titleTextColor);
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 3%;
+    -webkit-transition: color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+    -moz-transition: color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+    -ms-transition: color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+    border-bottom: 0.5px solid #005fa2;
+}
+
+.header-link:hover {
+    color: #000;
+    text-decoration: none;
+}
+
+.main {
+    height: 90%;
+    display: flex;
+}
+
+.map-main {
+    height: 100%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#viewDiv {
+    border: solid 1px black;
+    height: 100%;
+    width: 100%;
+    margin-left: 10px;
+}
+
+.enable-draw > button {
+    position: absolute;
+    left: 1%;
+    top: 75%;
+}
+
+#info {
+    position: absolute;
+    top: 17%;
+    left: 10px;
+    word-wrap: break-word;
+    width: 10%;
+    text-align: center;
+    padding: 14px;
+    border-radius: 5px;
+    line-height: 1.5rem;
+}
+
+.feature-table-container {
+    height: 30%;
+    width: 100%;
+    display: none;
+}
+
+.list-container {
+    position: absolute;
+    top: 80%;
+    left: 1%;
+    height: auto;
+    text-align: center;
+    border-radius: 5%;
+}
+
+#toggle-title {
+    padding-left: 5px;
+}
+
+#active-layer-title {
+    padding-left: 5px;
+}
+
+.form-main {
+    height: 100%;
+    width: 30%;
+    padding-left: 1%;
+    display: flex;
+    flex-direction: column;
+}
+
+.layer-list {
+    display: flex;
+    width: 100%;
+}
+
+.layer-list > button {
+    flex: auto;
+}
+
+/* Style the buttons that are used to open the tab content */
+.layer-list button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    border-radius: 5%;
+  }
+  
+  /* Change background color of buttons on hover */
+.layer-list button:hover {
+    border-radius: 5%;
+    background-color: var(--countyTheme);
+    color: var(--titleTextColor);
+  }
+  
+  /* Create an active/current tablink class */
+.layer-list button.active {
+    background-color: #ccc;
+  }
+  
+  /* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+  }
+
+#container {
+    width: 80%;
+    border-radius: 2%;;
+}
+
+.form-container {
+    padding-top: 5%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+.form-container > form > div {
+    flex: auto;
+}
+
+label {
+    font-size: 0.70rem;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+textarea {
+    box-sizing: content-box;
+    width: 100%;
+}
+
+input[type=submit] {
+    /* background-color: grey; */
+    background-color: #596D48;
+    border: solid 1px grey;
+    border-radius: 10%;
+    color: white;
+    padding: 16px 60px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+input {
+    border: 1px solid lightgrey;
+    border-radius: 8%;
+}
+
+.footer-container {
+    height: 3%;
+    background-color: var(--countyTheme);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--titleTextColor);
+}
+
+/* .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  } */
+
+
+.modal {
+    display: none;
+    /* This way it could be display flex or grid or whatever also. */
+    
+    /* Probably need media queries here */
+    width: 25%;
+    /* max-width: 100%; */
+    
+    height: 25%;
+    /* max-height: 100%; */
+    
+    position: absolute;
+    
+    z-index: 100;
+    
+    left: 35%;
+    top: 50%;
+    
+    /* Use this for centering if unknown width/height */
+    transform: translate(-50%, -50%);
+    
+    /* If known, negative margins are probably better (less chance of blurry text). */
+    /* margin: -200px 0 0 -200px; */
+    
+    background: white;
+    box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);
+    border-radius: 3%;
+  }
+.closed {
+    display: none;
+  }
+  
+.modal-overlay {
+    display: none;
+    position: absolute;
+    left: 0.3%;
+    height: 89.9%;
+    width: 69.4%;
+    /* display: none; */
+    background: rgba(0, 0, 0, 0.378);
+  }
+.modal-guts {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding: 20px 50px 20px 20px;
+  }
+  
+  

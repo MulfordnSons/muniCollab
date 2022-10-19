@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Municipal Collaboration</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.24/esri/themes/light/main.css">
+    <script src="https://js.arcgis.com/4.24/"></script>
+</head>
+<body>
+
+    <div class="header-container">
+        <img src="images/CCPALogo_61x61px.gif" alt="logo" id="logo">
+        <div id="app-title">
+            <h1>Muni Reporter</h1>
+        </div>
+
+        <div>
+            <a href="https://www.cumberlandcountypa.gov" class="header-link">County Website</a>
+            <a href="https://gis.ccpa.net/propertymapper" class="header-link">Property Mapper</a>
+            <li class="header-link">link 3</li>
+        </div>
+        
+    </div>
+
+
+    <div class="main">
+
+        <div class="map-main">
+            <div id="viewDiv">
+			
+			<div class="enable-draw esri-widget esri-component">
+                    <button id="enable-draw">enable drawing</button>
+                </div>
+
+                <div class="list-container esri-widget esri-component">
+                    <h3 id="toggle-title">Toggle Acitve Layer</h3>
+                    <div class="layer-list">
+                        <button class="tablinks" onclick="switchLayers(event, 'London')">Tax Parcels</button>
+                        <button class="tablinks" onclick="switchLayers(event, 'Paris')">Address Points</button>
+                        <button class="tablinks" onclick="switchLayers(event, 'Tokyo')">Roads</button>
+                        <button class="tablinks" onclick="switchLayers">Hydrants</button>
+                    </div>
+                </div>
+
+            <div class="modal-overlay" id="modal-overlay"></div>
+
+            <div class="modal" id="modal">
+                <button class="close-button" id="close-button">Obvious Close Button</button>
+                <div class="modal-guts">
+                    <h1>Modal Example</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae expedita corrupti laudantium aperiam, doloremque explicabo ipsum earum dicta saepe delectus totam vitae ipsam doloribus et obcaecati facilis eius assumenda, cumque.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae expedita corrupti laudantium aperiam, doloremque explicabo ipsum earum dicta saepe delectus totam vitae ipsam doloribus et obcaecati facilis eius assumenda, cumque.</p>
+                </div>
+            </div>
+
+            </div>
+            <div id="info" class="esri-widget esri-component">
+                <h3>Place a Point on the Map to begin the Submission Process</h3>
+            </div>
+            <!-- <div class="feature-table-container">featureTable (this will be 'collapsable')</div> -->
+
+            
+
+        </div>
+
+
+        <div class="form-main">
+
+            <div id="container">
+
+                <form action="" method="POST">
+
+                    <div class="form-container">
+                        <div class='form-row'>
+                            <label for='feature-request'>FEATURE REQUEST:</label>
+                            <input id='feature-request' name='feature-request' type='text'/>
+                        </div>
+        
+                        <div class='form-row'>
+                            <label for='first-name'>FIRST NAME:</label>
+                            <input id='first-name' name='first-name' type='text'/>
+                        </div>
+        
+                        <div class='form-row'>
+                            <label for='last-name'>LAST NAME</label>
+                            <input id='last-name' name='last-name' type='text'/>
+                        </div>
+        
+                        <div class='form-row'>
+                            <label for='email'>EMAIL</label>
+                            <input id='email'
+                                name='email'
+                                type='email'
+                                placeholder='joe@example.com'/>
+                        </div>
+        
+                        <div class='form-row'>
+                            <label for='phone-number'>PHONE NUMBER</label>
+                            <input id='phone-number' name='phone-number' type='number'/>
+                        </div>
+        
+                        <div class="form-row">
+                            <label for="request-date">DATE OF REQUEST:</label>
+                            <input type="date" id="request-date" name="request-date">
+                        </div>
+        
+                        <div class="form-row">
+                            <label for="notes">Request Notes:</label>
+        
+                            <textarea id="notes" name="notes" rows="10" cols="50">
+                            Add helpful information regarding the nature of this request
+                            </textarea>
+                        </div>
+
+                        <div class="form-row-footer">
+                            <input type="submit" name="submit" value="Submit" id="submit">
+                        </div>
+
+                    </div>
+
+    
+                </form>
+
+            </div>
+          
+<!-- 
+                        <div class="form-row">
+                            <label for="pwd">CONFIRM PASSWORD</label>
+                            <input type="password" id="pwd" name="pwd">
+                        </div> -->
+
+        </div>
+        
+
+    </div>
+
+    <div class="footer-container">
+        <h4>Copyright @ Cumberland County - 2022</h4>
+    </div>
+    
+
+    <script src="app.js"></script>
+</body>
+</html>
