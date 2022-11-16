@@ -4,25 +4,37 @@ require([
     "esri/views/draw/Draw",
     "esri/Graphic",
     "esri/layers/GraphicsLayer",
-    "esri/layers/FeatureLayer"
-  ], (Map, MapView, Draw, Graphic, GraphicsLayer, FeatureLayer) => {
+    "esri/layers/FeatureLayer",
+    "esri/widgets/LayerList"
+  ], (Map, MapView, Draw, Graphic, GraphicsLayer, FeatureLayer, LayerList) => {
 
     const drawGL = new GraphicsLayer({
-      id: "draw Graphics Layer"
+      id: "draw Graphics Layer",
+      listMode: "hide"
     });
+
+
+    const popupTaxParcels = {
+      "title": "Tax Parcels", 
+      "content": "<b>Parcel ID:</b> {Owner}"
+    }
+    
 
     const taxParcels = new FeatureLayer({
         url: "https://services1.arcgis.com/1Cfo0re3un0w6a30/arcgis/rest/services/Tax_Parcels/FeatureServer",
         minScale: 0,
-        maxSscale: 3000001
+        maxSscale: 3000001,
+        visible: false,
+        outFields: "Owner",
+        popupTemplate: popupTaxParcels
       });
 
       
-    // const addressPoints = new FeatureLayer({
-    //     url: "https://services1.arcgis.com/1Cfo0re3un0w6a30/arcgis/rest/services/Address_Points/FeatureServer",
-    //     minScale: 0,
-    //     maxSscale: 3000001
-    //   });
+    const addressPoints = new FeatureLayer({
+        url: "https://services1.arcgis.com/1Cfo0re3un0w6a30/arcgis/rest/services/Address_Points/FeatureServer",
+        minScale: 0,
+        maxSscale: 3000001
+      });
 
   
     const map = new Map({
@@ -37,26 +49,48 @@ require([
       zoom: 5,
     });
 
-    drawButton = document.getElementById('enable-draw')
+    let drawButton = document.getElementById('enable-draw')
 
     drawButton.onclick = function() {
       var content = drawButton.textContent
       console.log(drawButton.textContent)
-      if (content === 'enable drawing') {
-        drawButton.textContent = 'disable drawing'
-      } else if (content === 'disable drawing') {
-        drawButton.textContent = 'enable drawing'
+      if (content === 'Draw Enabled') {
+        drawButton.textContent = 'Draw Disabled'
+      } else if (content === 'Draw Disabled') {
+        drawButton.textContent = 'Draw Enabled'
       }
     }
 
-    // const featureLayer = new FeatureLayer({
-    //   url: "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/Landscape_Trees/FeatureServer/0"
-    // });
+    function zoomToLayer(layer) {
+      return layer.queryExtent().then((response) => {
+        console.log(response.extent)
+        view.goTo(response.extent)
+        .catch((error) => {
+          console.error(error);
+        });
+      });
+    }
 
-    // map.add(featureLayer);
+    function closeModal() {
+      console.log('button is clicked')
+      let modal = document.getElementById("modal")
+      modal.classList.add("closed")
+      console.log('button')
+      drawButton.textContent = 'Draw Enabled'
+    }
 
-    // map.add(addressPoints);
-    map.add(taxParcels);
+    function displayModal() {
+      let element = document.getElementById("modal");
+      element.classList.remove("closed");
+      drawButton.textContent = 'Draw Disabled';
+    }
+
+    let modalButton = document.getElementById("closeButton")
+    modalButton.addEventListener("click", closeModal);
+
+
+    map.add(addressPoints);
+    map.add(taxParcels, 0);
      
 
     //map.addLayer(drawGL)
@@ -67,8 +101,29 @@ require([
     
     view.when(()=>{
       setDrawAction();
-    });
+      zoomToLayer(taxParcels)
+    })
+    ;
     
+
+    view.when(() => {
+      const layerList = new LayerList({
+        view: view,
+        layers: [
+          {
+            layer: addressPoints
+          },
+          {
+            layer: taxParcels
+          }
+        ]
+      });
+
+      // Add widget to the top right corner of the view
+      view.ui.add(layerList, "top-right");
+    });
+
+  
     function setDrawAction() {
       let action = draw.create("point");
 
@@ -108,14 +163,14 @@ require([
           }
         }
       });
-      if (drawButton.textContent === 'disable drawing') {
+      if (drawButton.textContent === 'Draw Enabled') {
         if(addToGL){
           console.log(coordinates)
           console.log(view.spatialReference)
           drawGL.removeAll();
           drawGL.add(graphic);
-          document.getElementById('modal-overlay').style.display = "block"
-          document.getElementById('modal').style.display = "block"
+          // document.getElementById('modal-overlay').style.display = "block"
+          displayModal()
         }else{
           view.graphics.add(graphic);
         }

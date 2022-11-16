@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Municipal Collaboration</title>
-    <link rel="stylesheet" href="https://js.arcgis.com/4.24/esri/themes/light/main.css">
-    <script src="https://js.arcgis.com/4.24/"></script>
+  <meta charset="utf-8">
+  <title>Muni Collab</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="description" content="The Plan Submission Review Map is a useful tool for municipal and county officials, as well as residents and other stakeholders to monitor subdivision and land development activity throughout Cumberland County, Pennsylvania.">
+  <meta name="author" content="Cumberland County GIS">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="https://gis.ccpa.net/gis_images/favicon.ico">
+  <link type="image/ico" rel="shortcut icon" href="https://gis.ccpa.net/gis_images/favicon.ico">
+  <link rel="stylesheet" href="https://js.arcgis.com/4.24/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.24/"></script>
+
+  <!-- Facebook sharing -->
+  <meta property="og:type" content="article" />
+<meta property="og:title" content="Plan Submissions Review Map" />
+<meta property="og:image" content="assets/img/plan-reviewed-by-staff.jpg" />
+<meta property="og:description" content="An interactive web map that is a useful tool for municipal and county officials as well as residents and other stakeholders to monitor subdivision and land development activity throughout Cumberland County." />
+<meta charset="UTF-8">
+    
 </head>
 <body>
 
@@ -32,105 +46,80 @@
             <div id="viewDiv">
 			
 			<div class="enable-draw esri-widget esri-component">
-                    <button id="enable-draw">enable drawing</button>
-                </div>
+          <button id="enable-draw">Draw Disabled</button>
+      </div>
 
-                <div class="list-container esri-widget esri-component">
-                    <h3 id="toggle-title">Toggle Acitve Layer</h3>
-                    <div class="layer-list">
-                        <button class="tablinks" onclick="switchLayers(event, 'London')">Tax Parcels</button>
-                        <button class="tablinks" onclick="switchLayers(event, 'Paris')">Address Points</button>
-                        <button class="tablinks" onclick="switchLayers(event, 'Tokyo')">Roads</button>
-                        <button class="tablinks" onclick="switchLayers">Hydrants</button>
-                    </div>
-                </div>
-
-            <div class="modal-overlay" id="modal-overlay"></div>
-
-            <div class="modal" id="modal">
-                <button class="close-button" id="close-button">Obvious Close Button</button>
-                <div class="modal-guts">
-                    <h1>Modal Example</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae expedita corrupti laudantium aperiam, doloremque explicabo ipsum earum dicta saepe delectus totam vitae ipsam doloribus et obcaecati facilis eius assumenda, cumque.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae expedita corrupti laudantium aperiam, doloremque explicabo ipsum earum dicta saepe delectus totam vitae ipsam doloribus et obcaecati facilis eius assumenda, cumque.</p>
-                </div>
+          
             </div>
 
-            </div>
             <div id="info" class="esri-widget esri-component">
-                <h3>Place a Point on the Map to begin the Submission Process</h3>
+                <h3>Enable Drawing To Place a Request Point on the Map</h3>
             </div>
-            <!-- <div class="feature-table-container">featureTable (this will be 'collapsable')</div> -->
+            <div class="feature-table-container">featureTable (this will be 'collapsable')</div>
 
-            
+        </div>
 
+        <div class="modal closed" id="modal">
+          <div class="modal-guts">
+              <h2>Complete The Form -></h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae expedita corrupti laudantium aperiam, doloremque explicabo ipsum earum dicta saepe delectus totam vitae ipsam doloribus et obcaecati facilis eius assumenda, cumque.</p>
+              <button id="closeButton">Edit Request Location</button>                
+          </div>
         </div>
 
 
         <div class="form-main">
-
-            <div id="container">
-
-                <form action="" method="POST">
-
-                    <div class="form-container">
-                        <div class='form-row'>
-                            <label for='feature-request'>FEATURE REQUEST:</label>
-                            <input id='feature-request' name='feature-request' type='text'/>
-                        </div>
-        
-                        <div class='form-row'>
-                            <label for='first-name'>FIRST NAME:</label>
-                            <input id='first-name' name='first-name' type='text'/>
-                        </div>
-        
-                        <div class='form-row'>
-                            <label for='last-name'>LAST NAME</label>
-                            <input id='last-name' name='last-name' type='text'/>
-                        </div>
-        
-                        <div class='form-row'>
-                            <label for='email'>EMAIL</label>
-                            <input id='email'
-                                name='email'
-                                type='email'
-                                placeholder='joe@example.com'/>
-                        </div>
-        
-                        <div class='form-row'>
-                            <label for='phone-number'>PHONE NUMBER</label>
-                            <input id='phone-number' name='phone-number' type='number'/>
-                        </div>
-        
-                        <div class="form-row">
-                            <label for="request-date">DATE OF REQUEST:</label>
-                            <input type="date" id="request-date" name="request-date">
-                        </div>
-        
-                        <div class="form-row">
-                            <label for="notes">Request Notes:</label>
-        
-                            <textarea id="notes" name="notes" rows="10" cols="50">
-                            Add helpful information regarding the nature of this request
-                            </textarea>
-                        </div>
-
-                        <div class="form-row-footer">
-                            <input type="submit" name="submit" value="Submit" id="submit">
-                        </div>
-
-                    </div>
-
-    
-                </form>
-
+            <div class="form-header">
+                <div>
+                    <img src="images/CCPALogo_61x61px.gif" alt="">
+                </div>
+                <h2>Change Request Form</h2>
             </div>
           
-<!-- 
-                        <div class="form-row">
-                            <label for="pwd">CONFIRM PASSWORD</label>
-                            <input type="password" id="pwd" name="pwd">
-                        </div> -->
+            <div class="container">
+                <form>
+                  <ul class="flex-outer">
+                    <li>
+                      <label for="first-name">First Name</label>
+                      <input type="text" id="first-name" placeholder="Enter your first name here">
+                    </li>
+                    <li>
+                      <label for="last-name">Last Name</label>
+                      <input type="text" id="last-name" placeholder="Enter your last name here">
+                    </li>
+                    <li>
+                      <label for="email">Email</label>
+                      <input type="email" id="email" placeholder="Enter your email here">
+                    </li>
+                    <li>
+                      <label for="phone">Phone</label>
+                      <input type="tel" id="phone" placeholder="Enter your phone here">
+                    </li>
+                    <li>
+                      <label for="message">Request Notes</label>
+                      <textarea rows="6" id="message" placeholder="Enter your message here"></textarea>
+                    </li>
+                    <li>
+                      <button type="submit">Submit Request</button>
+                    </li>
+                  </ul>
+                </form>
+              </div>
+
+            <!-- <div class="form-footer">
+                <div>
+                    <div class="list-container esri-widget esri-component">
+                        <h3 id="toggle-title">Toggle Acitve Layer</h3>
+                        <div class="layer-list">
+                            <button class="tablinks" onclick="switchLayers(event, 'London')">Tax Parcels</button>
+                            <button class="tablinks" onclick="switchLayers(event, 'Paris')">Address Points</button>
+                            <button class="tablinks" onclick="switchLayers(event, 'Tokyo')">Roads</button>
+                            <button class="tablinks" onclick="switchLayers">Hydrants</button>
+                            <button class="tablinks" onclick="switchLayers">Clear</button>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
 
         </div>
         
